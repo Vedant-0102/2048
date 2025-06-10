@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, #root {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  padding: 20px;
+  color: #776e65;
+}
+
+.game-container {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.game-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #776e65;
+  margin: 0;
+}
+
+.score-container {
+  display: flex;
+  gap: 15px;
+}
+
+.score-box {
+  background: #bbada0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  min-width: 80px;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.score-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.score-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.game-info {
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.game-info p {
+  font-size: 1rem;
+}
+
+.game-instructions {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.game-board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.game-board {
+  position: relative;
+  background: #bbada0;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  touch-action: none;
+}
+
+.grid-background {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.grid-cell {
+  width: 68px;
+  height: 68px;
+  background: rgba(238, 228, 218, 0.35);
+  border-radius: 8px;
+}
+
+.grid-tiles {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.tile {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.8rem;
+  transition: transform 200ms ease-in-out;
+}
+
+.tile-new {
+  animation: tileAppear 200ms ease-in-out;
+}
+
+@keyframes tileAppear {
+  0% {
+    opacity: 0;
+    transform: translate(calc(var(--x) * 78px), calc(var(--y) * 78px)) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(calc(var(--x) * 78px), calc(var(--y) * 78px)) scale(1);
+  }
+}
+
+/* Tile Colors */
+.tile-2 { background: #eee4da; color: #776e65; }
+.tile-4 { background: #ede0c8; color: #776e65; }
+.tile-8 { background: #f2b179; color: #f9f6f2; }
+.tile-16 { background: #f59563; color: #f9f6f2; }
+.tile-32 { background: #f67c5f; color: #f9f6f2; }
+.tile-64 { background: #f65e3b; color: #f9f6f2; }
+.tile-128 { background: #edcf72; color: #f9f6f2; font-size: 1.5rem; }
+.tile-256 { background: #edcc61; color: #f9f6f2; font-size: 1.5rem; }
+.tile-512 { background: #edc850; color: #f9f6f2; font-size: 1.5rem; }
+.tile-1024 { background: #edc53f; color: #f9f6f2; font-size: 1.3rem; }
+.tile-2048 { background: #edc22e; color: #f9f6f2; font-size: 1.3rem; animation: tile2048 0.6s ease-in-out; }
+.tile-4096 { background: #3c3a32; color: #f9f6f2; font-size: 1.2rem; }
+
+
+
+@keyframes tile2048 {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.restart-button {
+  background: #8f7a66;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.restart-button:hover {
+  transform: translateY(-2px);
+  background: #a68b7a;
+}
+
+.game-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.game-message {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 90%;
+}
+
+.game-message h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #776e65;
+  font-weight: 700;
+}
+
+.game-message p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #8f7a66;
+  line-height: 1.5;
+}
+
+.game-message button {
+  background: #8f7a66;
+  color: white;
+  padding: 12px 25px;
+  margin: 0 10px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.game-message button:hover {
+  transform: translateY(-2px);
+}
