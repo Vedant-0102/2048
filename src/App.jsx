@@ -29,7 +29,7 @@ const addRandomTile = (tiles) => {
         row: pos.row,
         col: pos.col,
         isNew: true,
-        initialPosition: true // Add this flag
+        initialPosition: true 
       },
     ];
   }
@@ -194,7 +194,7 @@ const App = () => {
       </div>
       <div className="game-info">
         <p>Join the tiles, get to <strong>2048!</strong></p>
-        <p className="game-instructions">Use arrow keys or swipe to move tiles</p>
+        <p className="game-instructions">Use arrow keys to move tiles</p>
       </div>
       <div className="game-board-container">
         <div className="game-board">
