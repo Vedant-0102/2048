@@ -1,4 +1,4 @@
-# 2048 Game Clone
+# 2048 Game
 
 2048 game made with React
 
